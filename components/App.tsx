@@ -25,7 +25,12 @@ export function App() {
               let output = ''
               let cursor = tree.cursor()
               do {
-                output += `Node ${cursor.name} from ${cursor.from} to ${cursor.to}\n`
+                let pad = ''
+                let t = cursor.node.cursor()
+                while (t.parent() && pad.length < 20) {
+                  pad += '｜ '
+                }
+                output += `${pad} ${cursor.name} (${cursor.from} - ${cursor.to})\n`
               } while (cursor.next())
               setDebug(output)
             }
@@ -43,10 +48,10 @@ export function App() {
 
   return (
     <div className="h-full flex">
-      <div className="w-1/2 bg-gray-50">
+      <div className="w-1/2 bg-white p-1">
         <div ref={editor}></div>
       </div>
-      <div className="w-1/2 bg-green-500 overflow-auto p-1 text-sm">
+      <div className="w-1/2 bg-green-200 overflow-auto p-1 text-sm">
         <pre>{debug}</pre>
       </div>
     </div>
