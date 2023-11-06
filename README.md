@@ -1,2 +1,2 @@
-# java-nach-zahlen
+# Java nach Zahlen
 Idee
